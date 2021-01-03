@@ -6,7 +6,7 @@ function Request() {
   this._middlewares = [];
   this._fetch = fetching;
 
-  const methods = ['get', 'post', 'delete', 'put', 'patch', 'head', 'options', 'rpc'];
+  const methods = ['get', 'post', 'delete', 'put', 'patch', 'head', 'options'];
   methods.forEach((method) => {
     this[method] = async (url, options) => {
       return await this.run(url, { ...options, method });
@@ -43,8 +43,8 @@ Request.prototype.run = async function (url, options) {
   return ctx;
 };
 
-Request.prototype.setFetch = function (fetching) {
-  this._fetch = fetching;
+Request.prototype.setFetch = function (reqLibrary) {
+  this._fetch = reqLibrary;
 }
 
 export default Request;
